@@ -2,18 +2,15 @@ version: "3.7"
 
 services:
   db:
-    container_name: mongo
     image: mongo
-    environment:
-      - MONGO_INITDB_ROOT_USERNAME=admin
-      - MONGO_INITDB_DATABASE=auth
-      - MONGO_INITDB_ROOT_PASSWORD=pass
     networks:
       - mongo-compose-network
     ports:
       - '27017:27017'
+    command: --auth
     volumes:
-      - ./mongo/docker-entrypoint-initdb.d/mongo-init.js:/docker-entrypoint-initdb.d/mongo-init.js:ro
+      - ./mongo/mongo-init.js:/docker-entrypoint-initdb.d/mongo-init.js:ro
+      - ./mongo/.secrets.json:/secrets/.secrets.json:ro
       - ./data:/data/db
 
 networks:

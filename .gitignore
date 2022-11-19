@@ -1,1 +1,6 @@
 data/
+node_modules/
+
+.secrets.json
+
+package-lock.json
