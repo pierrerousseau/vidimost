@@ -4,7 +4,7 @@ services:
   db:
     image: mongo
     networks:
-      - mongo-compose-network
+      - vidimost-network
     ports:
       - '27017:27017'
     command: --auth
@@ -14,5 +14,5 @@ services:
       - ./data:/data/db
 
 networks:
-  mongo-compose-network:
+  vidimost-network:
     driver: bridge
